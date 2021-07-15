@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Symentic Woods</title>
+		<style>
+		input[type="number"] {
+		width:98%;
+		}
+		input[type="text"] {
+		width:98%;
+		}
+		input[type="date"] {
+		width: 98%;
+		}
+		input[type="email"] {
+		width:98%;
+		}
+		input[type="tel"] {
+		width: 98%;
+		}
+		select {
+		width: 98%;
+		}
+		body{
+            background-image: url('Symentic.png');
+			background-position: center;
+			background-repeat: no-repeat;
+    		background-size: 55%;
+    		font-weight: bold; 
+		}
+		div{
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			color: #FFFFFF;
+			font-size: 20px; 
+		}
+	
+	   h3{
+           color: #FFFFFF;
+		   background-color: #66FF99;
+           margin-left: auto;
+           margin-right: auto;
+           text-align: center;
+           width: 50%;
+           font-family:Verdana;
+           padding: 5px;
+           border-radius: 6px;
+
+           
+	   }
+		
+		table,td,tr{
+            width: 50%;
+            border: 1px solid;
+            border-color: black;
+            margin-left: auto;
+            margin-right: auto;
+            border-spacing: 1px;
+            border-radius: 6px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 1px;
+	
+        }
+
+		::-webkit-input-placeholder { 
+			color: #696969;
+			font-weight: bold;
+		}
+		
+		#submit{
+			color: #FFFFFF;
+            background-color: #66FF99;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 5px;
+            width: 50%;
+            font-family: Verdana;
+            font-weight: bold;
+            border-radius: 6px;
+
+
+
+		}
+		#result{
+			color:#FFFFFF;
+            font-size: 20px;
+		}
+
+		</style>
+</head>
+<body>
+<div>
+<h3>Symentic Woods</h3>
+<form onsubmit="return display()">
+<center>  
+<table>
+	<tr>
+        <td>Customer Name</td>
+        <td><input type="text" name="cname" id="cname" placeholder="Enter the customer name" pattern="[A-Za-z ]+" required></td>
+    </tr>
+	<tr>
+       <td>Phone Number</td>
+	   <td><input type="text" name="phno" id="phno" pattern="[789]{1}[0-9]{9}" required placeholder="Enter the phone number"/></td>
+    </tr>
+	<tr>
+        <td>Product Id</td>
+        <td><input type="text" id="pid" name="pid" placeholder="Enter the product id" required></td>
+        <!--<td><input type="text" id="pid" name="pid" placeholder="Enter the product id" required"></td>-->
+            <!--<option value="SWP001">SWP001</option>
+            <option value="SWP002">SWP002</option>
+            <option value="SWP003">SWP003</option>
+            <option value="SWP004">SWP004</option>
+        </select>-->
+    </tr>
+	<tr>
+        <td>Date of Order</td>
+        <td><input type="date" id="orderdate" required</td>
+    </tr>
+	<tr>
+		<td>Quality Level</td>
+        <td><select id="qlevel" required>
+            <option value="Select Quality Level..">Select Quality Level..</option>
+            <option value="Level01">Level01</option>
+            <option value="Level02">Level02</option>
+            <option value="Level03">Level03</option>
+        </select></td>
+	</tr>
+	<tr>
+        <td>Number of Products</td>
+        <td><input type="number" id="noOfProducts" placeholder ="Enter the number of products" required</td>
+    </tr>
+	<tr>
+        <td>Number of KMS for Delivery</td>
+        <td><input type="number" id="kms" placeholder="Enter the number of kms" required</td>
+    </tr>
+
+</table>
+<br>
+<input type="submit" id= "submit" value="CONFIRM ORDER" onclick="display()">
+
+</center> 
+<br>
+<div id="result"></div>
+</form>
+
+<script type="text/Javascript">
+   
+	
+    function display()
+	{	
+        var cusname = (document.getElementById("cname").value).toString();
+        var qlvl = (document.getElementById("qlevel").value).toString();
+        var prodid = (document.getElementById("pid").value).toString();
+        var no = document.getElementById("noOfProducts").value;
+        var km = document.getElementById("kms").value;   
+        var cost;
+        var dcharge;
+        if(prodid=="SWP001")
+        {
+            dcharge = km*8;
+        }
+        else if(prodid=="SWP002")
+        {
+            dcharge = km*10;
+        }
+        else if(prodid=="SWP003")
+        {
+            dcharge = km*11;
+        }
+        else if(prodid=="SWP004")
+        {
+            dcharge = km*13;
+        }
+
+        if(prodid=="SWP001" && qlvl=="Level01")
+        {
+            cost = no*(500 + (500*0.20));
+        }
+        else if(prodid=="SWP001" && qlvl=="Level02")
+        {
+            cost = no*(500 + (500*0.10));
+        }
+        else if(prodid=="SWP001" && qlvl=="Level03")
+        {
+            cost = no*(500);
+        }
+        else if(prodid=="SWP002" && qlvl=="Level01")
+        {
+            cost = no*(600 + (600*0.20));
+        }
+        else if(prodid=="SWP002" && qlvl=="Level02")
+        {
+            cost = no*(600 + (600*0.10));
+        }
+        else if(prodid=="SWP002" && qlvl=="Level03")
+        {
+            cost = no*(600);
+        }
+        else if(prodid=="SWP003" && qlvl=="Level01")
+        {
+            cost = no*(800 + (800*0.20));
+        }
+        else if(prodid=="SWP003" && qlvl=="Level02")
+        {
+            cost = no*(800 + (800*0.10));
+        }
+        else if(prodid=="SWP003" && qlvl=="Level03")
+        {
+            cost = no*(800);
+        }
+        else if(prodid=="SWP004" && qlvl=="Level01")
+        {
+            cost = no*(1200 + (1200*0.20));
+        }
+        else if(prodid=="SWP004" && qlvl=="Level02")
+        {
+            cost = no*(1200 + (1200*0.10));
+        }
+        else if(prodid=="SWP004" && qlvl=="Level03")
+        {
+            cost = no*(1200);
+        }
+        
+        var total_bill = cost + dcharge;
+        total_bill = Math.round(total_bill);
+        document.getElementById("result").innerHTML="Hi "+cusname+", Your order has been successfully placed and you need to pay is Rs."+total_bill;
+        return false;
+	}
+			
+</script>
+
+</body>
+</html>

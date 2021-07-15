@@ -1,0 +1,116 @@
+<!-- Do not modify the code template -->
+<!-- Specify all the component names and ids (incl., div id) as required in the description -->
+<!-- Do not use short hand in styling -->
+<!-- Do not use let or const keywords in javascript, instead use var -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Property</title>
+        <style>
+            body{
+                background-color: #E6E6FA;
+            }
+            h1{
+                color: #800080;
+                font-family: cursive;
+                text-align: center;
+            }
+            #total{
+                font-style: italic;
+                color: #D03090;
+                font-size: 20px;
+                text-align: center;
+                font-weight: bold;
+            }
+        </style>
+        
+        <script>
+            function calculateAmount()
+            {
+                var gst = parseInt(document.getElementsByName('gstAmount')[0].value)
+                var price = parseInt(document.getElementsByName('propertyCost')[0].value)
+                document.getElementById('total').innerHTML = "Total Amount to be paid: Rs. " + (gst + price + 100000 + 20000)
+                return false;
+            }
+            function property() {
+                var roomsStr = document.getElementsByName('noOfRooms')[0].value
+                var rooms = ""
+                if(roomsStr == '1BHK'){
+                    rooms = "21,7,5000";
+                } else if(roomsStr == '2BHK'){
+                    rooms = "30,50,000";
+                } else if(roomsStr == '3BHK'){
+                    rooms = "45,00,000";
+                }
+                document.getElementsByName('propertyCost')[0].value = rooms.replace(/,/g, "");
+            }
+            function gst(){
+                var roomsStr = document.getElementsByName('noOfRooms')[0].value
+                var rooms = ""
+                if(roomsStr == '1BHK'){
+                    rooms = "21,7,5000";
+                } else if(roomsStr == '2BHK'){
+                    rooms = "30,50,000";
+                } else if(roomsStr == '3BHK'){
+                    rooms = "45,00,000";
+                }
+                var price = parseInt(rooms.replace(/,/g, ""));
+                document.getElementsByName('gstAmount')[0].value = (price / 100) * 10 ;
+                // console.log(parseInt(rooms))
+            }
+        </script>
+    </head>
+    
+    <body>
+        <form onsubmit="return calculateAmount()">
+            <h1>E-Property Portal</h1>
+            <center>
+            <table>
+                <tr>
+                    <td>Customer Name</td>
+                    <td>
+                        <input type="text" name="customerName" id="customerName" required pattern="^[A-Za-z ]+$" placeholder="Enter the Customer Name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td>
+                        <input type="text" name="customerMobileNumber" id="customerMobileNumber" pattern="[789]{1}[0-9]{9}" required placeholder="Enter the Mobile Number"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Property Category</td>
+                    <td>
+                        <input type="radio" name="propertyCategory" value="Apartments" required/>Appartments
+                        <input type="radio" name="propertyCategory" value="Villas" required/>Villas
+                    </td>
+                </tr>
+                <tr>
+                    <td>No. Of Rooms</td>
+                    <td>
+                        <select id="noOfRooms" name="noOfRooms" required>
+                            <option value="1BHK">1BHK</option>
+                            <option value="2BHK">2BHK</option>
+                            <option value="3BHK">3BHK</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Property Cost</td>
+                    <td><input type="number" name="propertyCost" id="propertyCost" readonly onclick="property()"/></td>
+                </tr>
+                <tr>
+                    <td>GST Amount</td>
+                    <td><input type="number" readonly id="gstAmount" name="gstAmount" onclick="gst()"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" id="submit" name="submit" value="Total Amount to be Paid"/></td>
+                    <td><input type="reset" id="reset" name="reset" value="Reset"/></td>
+                </tr>
+            </table>
+            
+            <div id="total"></div>
+            </center>
+        </form>
+    </body>
+</html>

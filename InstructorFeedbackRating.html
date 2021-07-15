@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Feedback Rating</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+             body{
+                 background-color: #EED426;
+
+
+             }
+            h1{
+                color:#800080;
+                font-family: verdana;
+                font-style: italic;
+                text-align: center;
+            }
+           
+           
+        
+    </style>
+    <script type="text/Javascript">
+        function calculateFeedbackRating()
+        {
+            var r = document.getElementById("rating").value;
+            var c = r*10;
+            var n = document.getElementById("instructorName").value;
+            var p = document.getElementById("participantName").value;
+            document.getElementById("result").innerHTML= "Feedback  of "+n+" is "+c+" / 50. Given by participant - "+p;
+            return false;
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Instructor Feedback Rating</h1>
+           <form onsubmit="return calculateFeedbackRating()">
+                <center>
+                <table>
+                   <tr>
+                       <td>Participant Name</td>
+                        <td><input type="text" name="participantName" id="participantName" placeholder="Enter the participant name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Participant E-mail</td>
+                        <td><input type="email" name="participantEmail" id="participantEmail" placeholder="abc@gmail.com" required></td>
+                    </tr>
+                    <tr>
+                        <td>Instructor Name</td>
+                        <td><input type="text" name="instructorName" id = "instructorName" placeholder="Enter the instructor name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Course Name</td>
+                        <td>
+                        <select name="courseName" id="courseName" required>
+                            <option value="Java EE">Java EE</option>
+                            <option value="Python">Python</option>
+                            <option value="Web Technology">Web Technology</option>
+                            <option value="Android App Development">Android App Development</option>
+                            <option value="ASP.Net">ASP.Net</option>
+                        </select>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>Course Duration(in months)</td>
+                        <td><input type="number" name="courseDuration" id="courseDuration" min="1" max="5" required></td>
+                    </tr>
+                    <tr>
+                        <td>Course Start Date</td>
+                        <td><input type="date" name="courseDate" id="courseDate" required></td>
+                    </tr>
+                    <tr>
+                        <td>Feedback Rating</td>
+                        <td><input type = "number" name = "rating" id="rating" min="1" max="5" required</td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="submit" value="Submit Feedback" onclick="calculateFeedbackRating()"></td>
+                        <td><input type="reset" name="clear" value="Clear"></td>
+                    </tr>
+                </table>
+                
+                </center>
+            </form>
+            <div id="result"></div>
+            
+</body>
+</html>

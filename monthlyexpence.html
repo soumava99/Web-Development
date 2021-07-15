@@ -1,0 +1,108 @@
+<!-- Do not modify the code template -->
+<!-- Specify all the component names and ids (incl., div id) as required in the description -->
+<!-- Do not use short hand in styling -->
+<!-- Do not use let or const keywords in javascript, instead use var -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Monthly Expense</title>
+        <style>
+            body{
+                background-color: #E6E6FA;
+            }
+            h1{
+                color: #800080;
+                font-family: cursive;
+                text-align: center;
+            }
+            td#curricularActivity{
+                
+                background-color: #00FFFF;
+            }
+            
+        </style>
+        
+        <script>
+            var str;
+            var slider = document.getElementById("girlseval");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value;
+            var slider1 = document.getElementById("boyseval");
+            var output1 = document.getElementById("demo1");
+            output1.innerHTML = slider1.value;
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+                str=this.value;
+            }
+            slider1.oninput = function() {
+                output1.innerHTML = this.value;
+            }
+            function calculateExpenses()
+            {
+                var b = parseInt(document.getElementById("boyseval").value);
+                var g = parseInt(document.getElementById("girlseval").value);
+                var ex = (document.getElementById("curricularActivity").value).toString();
+                var totalexpense;
+                if(ex=="Karate")
+                {
+                    totalexpense = (b+g)*600;
+                }
+                else if(ex=="Music")
+                {
+                    totalexpense = (b+g)*500;
+                }
+                document.getElementById("result").innerHTML = "Total Monthly Expenses is: " +totalexpense;
+                return false;
+            }
+            
+        </script>
+    </head>
+    
+    <body>
+        <form onsubmit="return calculateExpenses()">
+            <h1>MONTHLY EXPENSES CALCULATOR</h1>
+            <center>
+            <table>
+                <tr>
+                    <td>Group Head Name</td>
+                    <td>
+                        <input type="text" name="groupHeadName" id="groupHeadName" required pattern="^[A-Za-z ]+$" placeholder="Enter the Group Head Name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>EMail ID</td>
+                    <td>
+                        <input type="email" name="groupHeadEmail" id="groupHeadEmail"  required/></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td>
+                        <input type="text" name="groupHeadMobileNumber" id="groupHeadMobileNumber" placeholder="Enter the Mobile Number"  pattern="[7-9]{1}[0-9]{9}" required/></td>
+                        
+                <tr>
+                    <td>Extra-Curricular Activity</td>
+                    <td>
+                        <input type="radio" id="curricularActivity" value="Karate" required/>Karate
+                        <input type="radio" id="curricularActivity" value="Music" required/>Music
+                    </td>
+                    
+                </tr>
+                <tr><td>No of Girls</td>
+                    <td><input type="range" name="noOfGirls" min="0" max="500" value="0" id="girlseval" required><span id="demo"></span></td>
+                    </tr>
+                    
+                    <tr><td>No of Boys</td>
+                    <td><input type="range" name="noOfBoys" min="0" max="500" value="0" id="boyseval" required><span id="demo1"></span></td>
+                    </tr>
+                <tr>
+                    <td><input type="submit" id="submit" name="submit" value="Calculate Monthly Expense" onclick="calculateExpenses()"></td>
+                    <td><input type="reset" id="reset" name="reset" value="Reset"></td>
+                </tr>
+            </table>
+            
+            <div id="result"></div>
+            </center>
+        </form>
+
+    </body>
+</html>

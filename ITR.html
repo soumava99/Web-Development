@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ITR Railway Management</title> 
+		<style>
+		input[type="text"], input[type="date"], select {
+		width:98%;
+		}
+		body{
+            background-image: url('ITR.png');
+			background-position: center;
+			background-repeat: no-repeat;
+    		background-size: 60%;
+    		font-weight: bold; 
+		}
+		div{
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			color: #FFFFFF;
+			font-size: 20px; 
+		}
+	
+	   h3{
+		    color: #FFFFFF;
+            background-color: #FF9966;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: 50%;
+            font-family: Verdana;
+            padding: 5px;
+            border-radius: 6px;
+	   }
+		
+		table, td, tr{
+		    border: solid 2px black;
+			width: 50%;
+            /*border: 1px solid;*/
+            /*border-color: black;*/
+            margin-left: auto;
+            margin-right: auto;
+            border-spacing: 1px;
+            border-radius: 6px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 1px;
+		}
+
+		::-webkit-input-placeholder { 
+			color: #696969;
+			font-weight: bold;
+		}
+		
+		#submit{
+			color: #FFFFFF;
+            background-color: #FF9966;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 5px;
+            width: 50%;
+            font-family: Verdana;
+            font-weight: bold;
+            border-radius: 6px;
+		}
+		#result{
+			color: #00FF99;
+            font-size: 20px;
+		}
+
+		</style>
+</head>
+<body>
+<div>
+<h3>ITR Railway Management</h3>
+<form onsubmit="return display()" >
+<table>
+	<tr>
+        <td>Passenger Name</td>
+        <td><input type="text" id="pname" placeholder="Enter the passenger name"  pattern="[a-z A-Z]+" required></td>
+    </tr>
+	<tr>
+       <td>Phone Number</td>
+	   <td><input type= "text" id="phno" placeholder="Enter the phone number" pattern="[7-9]{1}[0-9]{9}" required></td>
+    </tr>
+	<tr>
+        <td>Ticket Id</td>
+        <td><input type="text" id="tid" placeholder="Enter the ticket id" required></td>
+    </tr>
+	<tr>
+        <td>Date of Trip</td>
+        <td><input type="date" id="tripdate" required</td>
+    </tr>
+	<tr>
+        <td>Number of Tickets</td>
+        <td><input type="text" id="noOfTickets" placeholder="Enter the number of tickets" required></td>
+    </tr>
+	<tr>
+        <td>Date of Cancellation</td>
+        <td><input type="date" id="cancellationdate" required></td>
+        
+    </tr>
+	<tr>
+		<td>Seat Type</td>
+		<td><select name="stype" id="stype">
+            <option value="Select Seat Type..">Select Seat Type..</option>
+            <option value="SecondSitting">SecondSitting</option>
+            <option value="Sleeper">Sleeper</option>
+            <option value="FirstClass">FirstClass</option>
+            <option value="ACFirstClass">ACFirstClass</option>
+        </select></td>
+	</tr>
+	<tr>
+        <td>Amount Paid</td>
+        <td><input type="text" id="amountPaid" placeholder="Enter the amount paid" required></td>
+    </tr>
+</table>
+
+<p><input type="submit" id="submit" name="submit" value="CONFIRM CANCELLATION" onclick="display()" /></p>
+
+<div id="result"></div>
+</form>
+</div>
+<script>
+    function display(){
+		var noOfTickets = document.getElementById("noOfTickets").value;
+        var type = document.getElementById("stype").value;
+        var amountPaid = document.getElementById("amountPaid").value;
+        var conFeePerTicket;
+        var cancellationFee;
+
+        if(type=="SecondSitting")
+        {
+            conFeePerTicket = 10;
+            cancellationFee = 0.30;
+        }
+        else if(type=="Sleeper")
+        {
+            conFeePerTicket = 30;
+            cancellationFee = 0.40;
+        }
+        else if(type=="FirstClass")
+        {
+            conFeePerTicket = 50;
+            cancellationFee = 0.50;
+        }
+        else if(type=="ACFirstClass")
+        {
+            conFeePerTicket = 60;
+            cancellationFee = 0.50;
+        }
+
+        var conFee = noOfTickets*conFeePerTicket;
+        var cancellationCharge = amountPaid*cancellationFee;
+        var refundAmount = amountPaid - conFee - cancellationCharge;
+        refundAmount = Math.round(refundAmount);
+
+        var pName = document.getElementById("pname").value;
+        var s = "Hi "+pName+", your ticket has been successfully canceled and the refund amount is Rs. "+refundAmount;
+        document.getElementById("result").innerHTML = s;
+        
+	    return false;
+	}
+			
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Levi bike</title>
+    <style>
+        input[type="number"] {
+		width:98%;
+		}
+		input[type="text"] {
+		width:98%;
+		}
+		input[type="date"] {
+		width: 98%;
+		}
+		select {
+		width: 98%;
+		}
+        body{
+            background-image: url("bike.jpg");
+            background-repeat: no-repeat;
+            margin: auto;
+            background-size: cover ;
+            background-color: cadetblue;
+        }
+        h3{
+            color: #FFFFFF;
+            background-color: #00E6E6;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: 50%;
+            font-family: Verdana;
+            padding: 5px;
+            border-radius: 6px;
+        }
+        table,tr,td{
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid;/*extra*/
+            border-color: black;/*extra*/
+            border-spacing: 1px;
+            border-radius: 6px;
+            color: #0099FF; 
+            background-color: #F2F2F2;
+            padding: 1px;
+        }
+        div{
+            font-size: 20px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        ::-webkit-input-placeholder { 
+			color: #696969;
+			font-weight: bold;
+		}
+        #submit{
+            color: #FFFFFF;
+            background-color: #00E6E6;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 5px;
+            width: 50%;
+            font-family: verdana;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+        #result{
+            color: #e0f009;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function display()
+        {
+            var model=(document.getElementById("bikeModel").value).toString();
+            var color=(document.getElementById("modelColor").value).toString();
+            var show=parseFloat(document.getElementById("showRoomPrice").value);
+            var ins=parseInt(document.getElementById("insuranceAmount").value);
+            var rto=parseInt(document.getElementById("rtoCharges").value);
+            var total=show+ins+rto;
+            var onroadprice=Math.round(total);
+            document.getElementById("result").innerHTML="The on-road price of the "+color+" "+model+" is Rs. "+onroadprice;
+            return false;
+        }
+        function sprice() {
+               var m = (document.getElementById("bikeModel").value).toString();
+               var c = (document.getElementById("modelColor").value).toString();
+               var sp;
+               if(m=="LeviRT200" && c=="White"){
+                   sp=(234500+(234500*0.005));
+               }
+               if(m=="LeviRT200" && c=="Gray"){
+                sp=(234500+(234500*0.003));
+               }
+               if(m=="LeviRT200" && c=="Black"){
+                   sp=234500;
+               }
+               if(m=="LeviRT150" && c=="White"){
+                   sp=(175900+(175900*0.005));
+               }
+               if(m=="LeviRT150" && c=="Gray"){
+                    sp=(175900+(175900*0.003));
+               }
+               if(m=="LeviRT150" && c=="Black"){
+                    sp=175900;
+               }
+               if(m=="LeviUltimate350" && c=="White"){
+                    sp=(356790+(356790*0.005));
+               }
+               if(m=="LeviUltimate350" && c=="Gray"){
+                    sp=(356790+(356790*0.005));
+               }
+               if(m=="LeviUltimate350" && c=="Black"){
+                   sp=356790;
+               }
+               document.getElementById("showRoomPrice").value=sp;
+            }
+        function im() 
+        {
+            var mo = (document.getElementById("bikeModel").value).toString();
+            var y = parseInt(document.getElementById("yearOfInsurance").value);
+            var ia;
+            if(mo=="LeviRT200"){
+                ia=1520*y;
+            }
+            if(mo=="LeviRT150"){
+                ia=1367*y;
+            }
+            if(mo=="LeviUltimate350"){
+                ia=1940*y;
+            }
+            document.getElementById("insuranceAmount").value=ia;
+        }
+        function rc() 
+        {
+            var mo = (document.getElementById("bikeModel").value).toString();
+            var r;
+            if(mo=="LeviRT200"){
+                r=30040;
+            }
+            if(mo=="LeviRT150"){
+                r=25032;
+            }
+            if(mo=="LeviUltimate350"){
+                r=30721;
+            }
+            document.getElementById("rtoCharges").value=r;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return display()">
+        <h3>Levi Bike Showroom</h3>
+    <center>
+        <table>
+            <tr>
+                <td>Customer Name</td>
+                <td><input type="text" name="cname" id="cname" placeholder="Enter the Customer name" pattern="[A-Z a-z]+" required /><!-- Fill the code for Customer Name --></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td><input type="text" name="phno" id="phno" placeholder="Enter the phone number" pattern="[7-9]{1}[0-9]{9}" required /><!-- Fill the code for Customer Mobile Number --></td>
+            </tr>
+                <td>Booking Id</td>
+                <td><input type="text" name="bid" id="bid" placeholder="Enter the booking id" required/></td>
+            <tr>
+                <td>Date of Booking</td>
+                <td><input type="date" name="bookingdate" id="bookingdate" required></td>
+            </tr>
+            <tr>
+                <td>Bike Model</td>
+                <td><select name="bikeModel" id="bikeModel">
+                    <option value="Select Model..">Select Model..</option>
+                    <option value="LeviRT200">LeviRT200</option>
+                    <option value="LeviRT150">LeviRT150</option>
+                    <option value="LeviUltimate350">LeviUltimate350</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Model Color</td>
+                <td><select name="modelColor" id="modelColor">
+                    <option value="Select Color..">Select Color..</option>
+                    <option value="White">White</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Black">Black</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Year of Insurance</td>
+                <td><input type="number" name="yearOfInsurance" id="yearOfInsurance"  placeholder="Enter the Year Of Insurance" required></td>
+            </tr>
+            <tr>
+                <td>ShowRoom Price</td>
+                <td><input type="number" name="showRoomPrice" id="showRoomPrice" onclick="sprice()" readonly required></td>
+            </tr>
+            <tr>
+                <td>Insurance Amount</td>
+                <td><input type="number" name="insuranceAmount" id="insuranceAmount" onclick="im()" readonly required></td>
+            </tr>
+            <tr>
+                <td>RTO Charges</td>
+                <td><input type="number" name="rtoCharges" id="rtoCharges" onclick="rc()" readonly required></td>
+            </tr>
+        </table><br>
+        <input type="submit" id="submit" value="CONFIRM ORDER">
+        <br>
+    </center>
+       <br> <div id="result"></div>
+        </form>
+</body>
+</html>

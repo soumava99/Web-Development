@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Remove the Comments and fill in relevant code -->
+        <!-- Write code wherever necessary  -->
+        <!-- Do specify all the input component-ids (incl. div ids) correctly for your code to get evaluated successfully -->
+        <!-- Do not use short hand operators in styling -->
+        
+        <style>
+            body{
+               
+               background-color: #E6E6FA;
+            }
+            h1{
+                
+                color: #800080;
+                font-family: cursive;
+                text-align: center;
+            }
+            td#curricularActivity{
+                
+                background-color: #00FFFF;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>MONTHLY EXPENSES CALCULATOR</h1>
+        <form onsubmit="return calculateExpenses()">
+        <center>
+            <table>
+                
+            <tr><td>Group Head Name</td>
+            <td><input type="text" name="groupHeadName" placeholder="Enter the Group Head Name" pattern="[a-z A-Z]+" required></td>
+            </tr>
+            
+            <tr><td>Email ID</td>
+            <td><input type="email" name="groupHeadEmail" id="groupHeadEmail" required></td>
+            </tr>
+            
+            <tr><td>Mobile Number</td>
+            <td><input type="text" name="groupHeadMobileNumber" placeholder="Enter the Mobile Number" pattern="[7-9]{1}[0-9]{9}" required></td>
+            </tr>
+            
+            <tr><td>Extra-Curricular Activity</td>
+            <td><input type="radio" name="curricularActivity" id="curricularActivity" value="Karate" required>Karate
+                <input type="radio" name="curricularActivity" id="curricularActivity" value="Music" required>Music
+            </td>
+            </tr>
+            
+            <tr><td>No of Girls</td>
+            <td><input type="range" name="noOfGirls" min="0" max="500" value="0" id="girlseval" required><span id="demo"></span></td>
+            </tr>
+            
+            <tr><td>No of Boys</td>
+            <td><input type="range" name="noOfBoys" min="0" max="500" value="0" id="boyseval" required><span id="demo1"></span></td>
+            </tr>
+            
+            <tr><td><input type="submit" name="submit" value="Calculate Monthly Expense"></td>
+            <td><input type="reset" name="reset" value="Reset"></td></tr>
+            
+        </table>
+        <div id="result"></div>
+        </center>
+        </form>
+        
+        <script>
+        var str;
+        var slider = document.getElementById("girlseval");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+        var slider1 = document.getElementById("boyseval");
+        var output1 = document.getElementById("demo1");
+        output1.innerHTML = slider1.value;
+        slider.oninput = function() {
+          output.innerHTML = this.value;
+          str=this.value;
+        }
+        slider1.oninput = function() {
+          output1.innerHTML = this.value;
+        }
+        function calculateExpenses()
+        {
+            /* Fill  the Javascript code to display the message after calculation*/
+            var curri=(document.getElementById("curricularActivity").value).toString();
+            var totalMonthlyAmount=0;
+            var girls = parseInt(document.getElementById("girlseval").value);
+            var boys = parseInt(document.getElementById("boyseval").value);
+            if(curri=="Karate")
+            {
+                totalMonthlyAmount=(girls+boys)*600;
+            }
+            else if(curri=="Music")
+            {
+                totalMonthlyAmount=(girls+boys)*500;
+            }
+            
+            document.getElementById("result").innerHTML=
+            "Total Monthly Expenses is:"+totalMonthlyAmount;
+            
+            return false;
+        }
+        </script>
+    </body>
+</html>
